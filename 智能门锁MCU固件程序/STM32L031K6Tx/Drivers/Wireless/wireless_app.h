@@ -1,29 +1,15 @@
-#ifndef WIRELESS_APP_H
-#define WIRELESS_APP_H
+#ifndef __WIRELESS_APP_H__
+#define __WIRELESS_APP_H__
 
-
+#include "protocol.h"
 #include "stm32l0xx.h"
 #include "uart.h"
 
-//#define TX_THRESHOLD                        0x30
-//#define RX_THRESHOLD                        0x30
-
-//#define RESET_TRANSMIT                      0x01
-//#define RESET_RECEIVE                       0x02
 
 
-//#define NO_CHANGE  									0
-//#define SLEEP_STATE  								1
-//#define SPI_ACTIVE_STATE 						2
-//#define READY_STATE 		cosnt						3
-//#define ANOTHER_ENUMERATION_STATE 	4
-//#define TURE_TX_STATE 							5
-//#define TURE_RX_STATE 							6
-//#define TX_STATE 										7
-//#define RX_STATE 										8
-
-
-#define WLSent_TimeOut_Val            42
+#define WLSent_TimeOut_Val            25
+#define HKData_LenMax                               244          //数据标识4+数据8MAX
+#define HKFrame_LenMax                              (11+HKData_LenMax)     //头1+地址4+配置序号1+控制码1+数据长度1 +校验2+尾1
 
 /*****************  si4438 data receive  ********************/
 typedef struct
@@ -55,11 +41,12 @@ typedef enum
 {
   Wireless_Free = 0,
   Wireless_RX_Receiving,
-  Wireless_RX_Sync,
+  Wireless_RX_Idle,
   Wireless_RX_Finish,
   Wireless_RX_Failure,
   Wireless_TX_Sending,
   Wireless_TX_Finish,
+  Wireless_TX_Failure
 }Wireless_Status_TypDef;
 
 extern volatile Wireless_Status_TypDef WIRELESS_STATUS;
@@ -101,37 +88,18 @@ typedef enum
 
 
 
-/*
-#define INPUT_PARAMETER_ERROR                     0xff
-#define CHANNEL_ERROR                             0xe1
-#define RECEIVE_LENGTH_ERROR                      0x10
-#define FRAME_HEADER_ERROR                        0X05
-#define DATA_NOT_HANDLED                          0x06
-
-
-
-
-
-/ ************************    *************************** /
-#define START_RECEIVE_SUCCEED                     0x01
-#define START_TRANSMIT_SUCCEED                    0x01
-
-//#define START_RECEVIE_FAILURE                     0x00
-//#define START_TRANSIMT_FAILURE                    0x00
-
-*/
-
 
 #define CHANNEL_BUSY                              0X00
 #define CHANNEL_FREE                              0X01
 
 #define WirelessRx_Timeout_Threshold              18
-#define BUSY_TIMEOUT                              18    //200ms
+#define BUSY_TIMEOUT                              18    //150ms
+
 
 //void Si4438_Delay_ms(u16 nms);
-
 #define Use_Rx_Hop
-#define Default_Channel            10
+
+#define  Default_Channel            10
 
 /************************* 外部变量 ***************************/
 extern volatile  Wireless_ErrorType WIRELESS_ERROR_CODE;
@@ -139,7 +107,7 @@ extern WLS Wireless_Buf;
 extern volatile uint16_t WirelessRx_Timeout_Cnt;
 extern uint8_t Wireless_Channel[2];
 
-
+extern uint16_t test;
 /************************* 外部函数 ***************************/
 Wireless_ErrorType Wireless_Init(void);
 void Si4438_Interrupt_Handler(WLS *pWL);
@@ -148,9 +116,9 @@ uint8_t RSSI_Get(void);
 //void Si4438_PhysicalLayer_ReceiveDataConvert(WLS *pWL);
 Wireless_ErrorType Si4438_Transmit_Start(WLS *pWL, uint8_t channel_number, uint8_t *addr, uint8_t length);
 Wireless_ErrorType Si4438_Transmit(WLS *pWL, uint8_t channel_number, uint8_t *addr, uint8_t length);
-
 Wireless_ErrorType Si4438_Receive_Start(uint8_t channel_number);
-Wireless_ErrorType Si4438_Receive_Start_Normal(uint8_t channel_number);
+
+
 void Wireless_RestartRX(uint8_t channel_number);
 uint8_t PLME_ED_Request(void);
 uint8_t PLME_CCA(void);

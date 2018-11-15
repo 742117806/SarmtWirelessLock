@@ -11,10 +11,10 @@
 
 #if _DEBUG_
 #define DEBUG_Printf(...)   printf(__VA_ARGS__)
-#define DEBUT_SendBytes(b,n)	UartSendBytes(DEBUT_UART,b,n);
+#define DEBUG_SendBytes(b,n)	UartSendBytes(DEBUT_UART,b,n);
 #else
 #define DEBUG_Printf(...) 
-#define DEBUT_SendBytes(b,n)
+#define DEBUG_SendBytes(b,n)
 #endif
 
 

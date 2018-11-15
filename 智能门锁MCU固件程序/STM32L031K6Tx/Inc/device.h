@@ -19,6 +19,7 @@ typedef struct DeviceInfo_
 	uint8_t aes[16];		//密钥
 	uint8_t addr_DA;		//逻辑地址
 	uint8_t addr_GA[3];		//群众地址
+	uint8_t NA;				//2字节对齐补全字节
 }DeviceInfo_t;
 
 

@@ -114,7 +114,7 @@ extern uint8_t FrrC_Val;
 extern uint8_t FrrD_Val;
 #endif
 
-extern void Get_WireLessChannel(uint8_t *wire_chnel);
+extern void Get_WireLessChannel(uint8_t* wire_chnel);
 extern uint8_t const Channel_Frequency_Index[66];
 extern unsigned char  RF_RX_HOP_CONTROL_12[];
 

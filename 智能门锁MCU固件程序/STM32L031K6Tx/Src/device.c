@@ -53,6 +53,9 @@ void AES_Init(void)
 void DeviceInfoInit(void)
 {
 	EEPROM_ReadBytes(EEPROM_MAC_EXSIT_ADDR,(uint8_t*)&deviceInfo,sizeof(deviceInfo));
+//	deviceInfo.addr_GA[0]=0x00;
+//	deviceInfo.addr_GA[1]=0x2A;
+//	deviceInfo.addr_GA[2]=0x5B;
 }
 
 //根据家庭组切换到新的固定通讯频道上
@@ -60,6 +63,8 @@ void DeviceInfoInit(void)
 void Get_WireLessChannel(uint8_t *wire_chnel)
 {
     uint32_t temp_val = deviceInfo.addr_GA[0] + deviceInfo.addr_GA[1] + deviceInfo.addr_GA[2];
+    //uint32_t temp_val = 0x00 + 0x2A + 0x5B;
+    //uint32_t temp_val;
     if (temp_val == 0)
     {
         wire_chnel[0] = Default_Channel;
@@ -69,6 +74,11 @@ void Get_WireLessChannel(uint8_t *wire_chnel)
     {
         wire_chnel[0] = (temp_val & 0x1f) << 1; //共32个信道组，每个信道组有两个信道
         wire_chnel[1] = wire_chnel[0] + 1;
+		if(wire_chnel[0] == Default_Channel)
+		{
+			wire_chnel[0] = wire_chnel[0] + 2;
+			wire_chnel[1] = wire_chnel[0] + 1;
+		} 
     }
 
     RF_RX_HOP_CONTROL_12[7] = Channel_Frequency_Index[wire_chnel[0]]; //放入群组的主频道

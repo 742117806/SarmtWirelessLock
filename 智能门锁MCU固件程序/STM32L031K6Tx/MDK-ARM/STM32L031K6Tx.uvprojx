@@ -335,7 +335,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32L031xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Inc;            ../Drivers/STM32L0xx_HAL_Driver/Inc;            ../Drivers/STM32L0xx_HAL_Driver/Inc/Legacy;            ../Drivers/CMSIS/Device/ST/STM32L0xx/Include;            ../Drivers/CMSIS/Include;            ..\Drivers\MCU_EEPROM;            ..\Drivers\Wireless;            ..\LockApp</IncludePath>
+              <IncludePath>../Inc;             ../Drivers/STM32L0xx_HAL_Driver/Inc;             ../Drivers/STM32L0xx_HAL_Driver/Inc/Legacy;             ../Drivers/CMSIS/Device/ST/STM32L0xx/Include;             ../Drivers/CMSIS/Include;             ..\Drivers\MCU_EEPROM;             ..\Drivers\Wireless;             ..\LockApp</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -413,6 +413,11 @@
               <FileName>user_call_back.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Src\user_call_back.c</FilePath>
+            </File>
+            <File>
+              <FileName>myStr.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\myStr.c</FilePath>
             </File>
             <File>
               <FileName>main.c</FileName>
@@ -940,7 +945,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32L031xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Inc;               ../Drivers/STM32L0xx_HAL_Driver/Inc;               ../Drivers/STM32L0xx_HAL_Driver/Inc/Legacy;               ../Drivers/CMSIS/Device/ST/STM32L0xx/Include;               ../Drivers/CMSIS/Include;               ..\Drivers\MCU_EEPROM;               ..\Drivers\Wireless</IncludePath>
+              <IncludePath>../Inc;                ../Drivers/STM32L0xx_HAL_Driver/Inc;                ../Drivers/STM32L0xx_HAL_Driver/Inc/Legacy;                ../Drivers/CMSIS/Device/ST/STM32L0xx/Include;                ../Drivers/CMSIS/Include;                ..\Drivers\MCU_EEPROM;                ..\Drivers\Wireless</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1018,6 +1023,11 @@
               <FileName>user_call_back.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Src\user_call_back.c</FilePath>
+            </File>
+            <File>
+              <FileName>myStr.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\myStr.c</FilePath>
             </File>
             <File>
               <FileName>main.c</FileName>
@@ -1613,7 +1623,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32L031xx,DEVICE_TYPE_DOOR_LOCK</Define>
               <Undefine></Undefine>
-              <IncludePath>../Inc;            ../Drivers/STM32L0xx_HAL_Driver/Inc;            ../Drivers/STM32L0xx_HAL_Driver/Inc/Legacy;            ../Drivers/CMSIS/Device/ST/STM32L0xx/Include;            ../Drivers/CMSIS/Include;            ..\Drivers\MCU_EEPROM;            ..\Drivers\Wireless;            ..\LockApp</IncludePath>
+              <IncludePath>../Inc;             ../Drivers/STM32L0xx_HAL_Driver/Inc;             ../Drivers/STM32L0xx_HAL_Driver/Inc/Legacy;             ../Drivers/CMSIS/Device/ST/STM32L0xx/Include;             ../Drivers/CMSIS/Include;             ..\Drivers\MCU_EEPROM;             ..\Drivers\Wireless;             ..\LockApp</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1691,6 +1701,11 @@
               <FileName>user_call_back.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Src\user_call_back.c</FilePath>
+            </File>
+            <File>
+              <FileName>myStr.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\myStr.c</FilePath>
             </File>
             <File>
               <FileName>main.c</FileName>

@@ -84,24 +84,24 @@ static void MX_LPUART1_UART_Init(void);
 void SystemStop(void)
 {
 
-    if((sleep_delay_cnt > 1000)&&(up_power_delay_cnt > 60000 ))
-    {
-        sleep_delay_cnt = 1;
-        up_power_delay_cnt = 60000;
-        DEBUG_Printf("\r\nSystem stop");
-        /* enable MCU wake-up by UART */
-        HAL_UARTEx_EnableStopMode(&hlpuart1);
-        /*关闭无线模块SI4438*/
-        HAL_GPIO_WritePin(SI4438_SDN_GPIO_Port, SI4438_SDN_Pin, GPIO_PIN_SET);
-        /* enter stop mode */
-        HAL_PWR_EnterSTOPMode(PWR_LOWPOWERREGULATOR_ON, PWR_STOPENTRY_WFI);
-        HAL_UARTEx_DisableStopMode(&hlpuart1);
+	if((sleep_delay_cnt > 1000)&&(up_power_delay_cnt > 60000 ))
+	{
+		sleep_delay_cnt = 1;
+		up_power_delay_cnt = 60000;
+		DEBUG_Printf("\r\nSystem stop");
+		/* enable MCU wake-up by UART */
+		HAL_UARTEx_EnableStopMode(&hlpuart1);
+		/*关闭无线模块SI4438*/
+		HAL_GPIO_WritePin(SI4438_SDN_GPIO_Port, SI4438_SDN_Pin, GPIO_PIN_SET);
+		/* enter stop mode */
+		HAL_PWR_EnterSTOPMode(PWR_LOWPOWERREGULATOR_ON, PWR_STOPENTRY_WFI);
+		HAL_UARTEx_DisableStopMode(&hlpuart1);
 
-        HAL_Delay(1);
-        Wireless_Init();
-        Si4438_Receive_Start(Wireless_Channel[0]); //开始接收无线数据
-        DEBUG_Printf("\r\nSystem wake up");
-    }
+		HAL_Delay(1);
+		Wireless_Init();
+		Si4438_Receive_Start(Wireless_Channel[0]); //开始接收无线数据
+		DEBUG_Printf("\r\nSystem wake up");
+	}
 
 }
 
@@ -144,19 +144,19 @@ int main(void)
   MX_LPUART1_UART_Init();
   /* USER CODE BEGIN 2 */
     HAL_UART_Receive_IT(&hlpuart1, &LP_UartRec, 1);
-    Device_MAC_Init();		//设备MAC地址初始化
+	Device_MAC_Init();		//设备MAC地址初始化
     Get_WireLessChannel(Wireless_Channel);
     Wireless_Init();
     Si4438_Receive_Start(Wireless_Channel[0]); //开始接收无线数据
     //MCU_EEPRomTest();
-    AES_Init();
-    //EncryptTest();
-    // _74Code_Test();
+	AES_Init();
+	//EncryptTest();
+	// _74Code_Test();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-    DEBUG_Printf("\r\nSystem Start!");
+	DEBUG_Printf("\r\nSystem Start!");
 
     while (1)
     {
@@ -166,9 +166,9 @@ int main(void)
   /* USER CODE BEGIN 3 */
         WirelessTask();
         UartTask();
-
-        SystemStop();
-        //DEBUG_Printf("\r\ndelay_1s");
+		
+		SystemStop();
+		//DEBUG_Printf("\r\ndelay_1s");
     }
   /* USER CODE END 3 */
 

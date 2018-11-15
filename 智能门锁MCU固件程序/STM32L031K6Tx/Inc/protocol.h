@@ -77,7 +77,7 @@
 #define AesData_LenMax                            16
 #define AesFrame_LenMax                           (5+AesData_LenMax)  //头1+控制码1+数据长度1 +校验2
 
-#define UART_RECV_BUFF_SIZE	100	//串口接收数据缓存大小
+#define UART_RECV_BUFF_SIZE	256	//串口接收数据缓存大小
 #define MAC_UART_RECV_BUFF_SIZE	48
 
 typedef struct UartRec_

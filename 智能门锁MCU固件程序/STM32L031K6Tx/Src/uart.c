@@ -41,7 +41,7 @@ void UartSendData(USART_TypeDef *UARTx, uint8_t byte)
 }
 void UartSendBytes(USART_TypeDef *UARTx, uint8_t *buf, uint16_t len)
 {
-    uint8_t i = 0;
+    uint16_t i = 0;
     for (i = 0; i < len; i++)
     {
         UartSendData(UARTx,*buf++);
