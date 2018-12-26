@@ -208,7 +208,7 @@ void WirelessRespoint(FRAME_CMD_t*frame,FRAME_CMD_t* respoint,uint8_t result,uin
 	respoint->Ctrl.eventFlag = 0;		//普通帧
 	respoint->Ctrl.c_AFN = 0;			//有74编码
 	respoint->DataLen = datPath_len+4;	//数据长度中有1个数据功能和3个数据标识
-	respoint->userData.AFN = frame->userData.AFN;
+	respoint->userData.AFN = 0;
 	respoint->FSQ.frameNum = frame->FSQ.frameNum;
 	respoint->FSQ.encryptType = 1;
 	respoint->FSQ.routeFlag = 0;
@@ -247,7 +247,11 @@ void DeviceJoinNet(FRAME_CMD_t *frame_cmd)
 	uint16_t i=0;
 	uint8_t ret;
 	JOINE_NET_CMD_t *joine_net_cmd;
-	LOCK_JOINNET_DATA__t lock_joinnet_repoint_content;
+	//LOCK_JOINNET_DATA__t lock_joinnet_repoint_content;	
+	
+	SENSOR_JOINNET_DATA_t lock_joinnet_repoint_content;
+	memset(&lock_joinnet_repoint_content,0x00,sizeof(SENSOR_JOINNET_DATA_t)) ;
+	
 
 	joine_net_cmd = (JOINE_NET_CMD_t*)frame_cmd->userData.content;
 	ret = memcmp(joine_net_cmd->mac,deviceInfo.mac,8);			//比较自身MAC于接收到的MAC是否一样
@@ -291,9 +295,13 @@ void DeviceJoinNet(FRAME_CMD_t *frame_cmd)
 
 		
 		//计算出密文，存放在aes_w，供加解密用
-		//AES_Init(); 
+		AES_Init(); 
 		lock_joinnet_repoint_content.version[0]= version[0];
 		lock_joinnet_repoint_content.version[1]= version[1];
+		
+		//添加设备本身附带的功能(如温度检测，湿度检测，PM2.5检测)，如果没有这些功能，那么这部分数据没有
+		lock_joinnet_repoint_content.doorLock = 1;              //门磁功能
+		
 		WirelessRespoint(frame_cmd,&repoint,0x00,(uint8_t*)&lock_joinnet_repoint_content,sizeof(lock_joinnet_repoint_content));
 		
 		

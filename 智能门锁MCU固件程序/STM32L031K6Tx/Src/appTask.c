@@ -238,9 +238,9 @@ void UartTask(void)
 		FrameData.FSQ.encryptType = 0;   //不加密
 		FrameData.FSQ.frameNum = wireless_tx_frame_num&0x0f;
 		FrameData.userData.AFN = 0;
-		FrameData.userData.Index[0]= 0x01;
-		FrameData.userData.Index[1]= 0x00;
-		FrameData.userData.Index[2]= 0x04;
+		FrameData.userData.Index[0]= 0x03;
+		FrameData.userData.Index[1]= 0xFE;
+		FrameData.userData.Index[2]= 0x02;
 		FrameData.DataLen = lpuart1Rec.cnt+4;
 		memcpy(FrameData.userData.content,lpuart1Rec.buff,lpuart1Rec.cnt);
 

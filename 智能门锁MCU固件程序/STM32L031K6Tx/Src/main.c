@@ -167,7 +167,7 @@ int main(void)
         WirelessTask();
         UartTask();
 
-        SystemStop();
+        SystemStop();             //系统省电
         //DEBUG_Printf("\r\ndelay_1s");
     }
   /* USER CODE END 3 */
